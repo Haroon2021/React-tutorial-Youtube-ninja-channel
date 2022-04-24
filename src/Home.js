@@ -1,26 +1,19 @@
 import { useState } from 'react';
+import BlogList from './BlogList';
 
 const Home = () => {
-    // name = mario initially setName makes react listen for changes 
-     //in the variable name (due to events happening
-    //on screen user clicks ect) and respond whenn it changes
-    const [name, setName] = useState("mario");
-    const [age, setAge] = useState(25);
-
-    const handleClick = () => {
-        // since we use setName react responds and changes the value of the name variable
-        setName('Luigi')
-        setAge(30);
-    }
-
+    const[blogs, setBlogs] = useState([
+        { title: 'My new website', body: 'lorem ipsum...', author: 'mario', id: 1 },
+        { title: 'Welcome party!', body: 'lorem ipsum...', author: 'yoshi', id: 2 },
+        { title: 'Web dev top tips', body: 'lorem ipsum...', author: 'mario', id: 3 }
+    ]);
     return ( 
         <div className="Home">
-            <h2>Homepage</h2>
-            <p>{name}</p>
-            <p>Is {age} years old</p>
-            <button onClick = {handleClick}>Click me</button>
+            <BlogList blogs = {blogs} title = "All Blogs!!!" />
+            <BlogList blogs = {blogs.filter((blog) => blog.author === 'mario' )} title = "Mario's blogs" />
         </div>
      );
 }
  
 export default Home;
+
